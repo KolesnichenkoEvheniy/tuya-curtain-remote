@@ -51,22 +51,22 @@ void setup() {
 }
 
 void loop() {
-    static unsigned long lastTestTime = 0;
-    unsigned long currentTime = millis() - TEST_INTERVAL; // Subtract TEST_INTERVAL to run the test immediately
+	const int TEST_PERCENTAGE = 50; // Set blinds to 50%
+	const unsigned long TEST_INTERVAL = 30000; // Test every 30 seconds
 
-    // Run the test every TEST_INTERVAL milliseconds
-    if (currentTime - lastTestTime >= TEST_INTERVAL) {
-        lastTestTime = currentTime;
+	static unsigned long lastTestTime = 0;
+	unsigned long currentTime = millis();
 
-        Serial.print("Setting blinds to ");
-        Serial.print(TEST_PERCENTAGE);
-        Serial.println("%");
+	if (currentTime - lastTestTime >= TEST_INTERVAL) {
+		lastTestTime = currentTime;
 
-        // Send command to control blinds via Tuya API
-        if (tuya.setBlindsPosition(TEST_PERCENTAGE)) {
-            Serial.println("Successfully set blinds percentage");
-        } else {
-            Serial.println("Failed to set blinds percentage");
-        }
-    }
+		bool success = tuya.setBlindsPositionWithRetries(TEST_PERCENTAGE);
+
+		if (success) {
+			Serial.println("Successfully set blinds percentage");
+		} else {
+			Serial.println("Failed to set blinds percentage after retries");
+		}
+	}
 }
+
