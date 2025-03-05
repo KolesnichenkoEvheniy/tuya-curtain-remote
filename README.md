@@ -20,15 +20,26 @@ This project provides an example of how to control Tuya smart devices using the 
 
 1. Clone the repository.
 2. Install required libraries (e.g., Bounce2, ArduinoJson) using PlatformIO or Arduino IDE.
-3. Configure `config.h` with your WiFi and Tuya API credentials.
-4. Upload the code to your ESP32 board.
+3. Copy the example configuration file:
+
+```bash
+cp include/config.h.example include/config.h
+```
+
+4. Edit `include/config.h` with your WiFi and Tuya API credentials.
+5. Upload the code to your ESP32 board.
+
+## Configuration
+
+The `config.h` file is located in the `include` folder. It contains sensitive information such as WiFi credentials and Tuya API settings. Make sure to keep this file private and not commit it to version control.
 
 ## Troubleshooting
 
 - Check the Serial Monitor for error messages.
-- Ensure correct Tuya API credentials and WiFi settings.
+- Ensure correct Tuya API credentials and WiFi settings in `include/config.h`.
 - Verify that the device is properly connected to the internet.
+
 
 ## Contributing
 
-Contributions are welcome! Please submit pull requests with detailed explanations of changes.
+Not planned.
