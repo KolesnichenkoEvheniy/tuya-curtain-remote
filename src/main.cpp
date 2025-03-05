@@ -14,10 +14,6 @@ const int buttonPin = 35;        // Button pin
 TuyaAPI tuya(TUYA_CLIENT_ID, TUYA_SECRET, TUYA_DEVICE_ID, TUYA_API_URL);
 Bounce buttonDebouncer;
 
-// Fixed percentage for testing
-const int TEST_PERCENTAGE = 90; // Set blinds to 50% open
-const unsigned long TEST_INTERVAL = 30000; // Test every 30 seconds
-
 void setup() {
     Serial.begin(115200);
 
@@ -51,6 +47,7 @@ void setup() {
 }
 
 void loop() {
+    // Fixed percentage for testing
 	const int TEST_PERCENTAGE = 50; // Set blinds to 50%
 	const unsigned long TEST_INTERVAL = 30000; // Test every 30 seconds
 
